@@ -40,4 +40,31 @@ public class TopicService {
             return new ResponseEntity<List<TweetsTopic>>(tweets, HttpStatus.OK);
         }else{return new ResponseEntity<List<TweetsTopic>>(HttpStatus.NOT_FOUND);}
     }
+    
+    @RequestMapping(value = "/{id}/htweetsTopic",method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<List<HistoryTweetsTopic>> getHistoryTweetsTopic(@PathVariable("id") Integer id){
+        if(topicRepository.exists(id)){
+            List<HistoryTweetsTopic> htweets = topicRepository.findOne(id).getHistoryTweetsTopicList();
+            return new ResponseEntity<List<HistoryTweetsTopic>>(htweets, HttpStatus.OK);
+        }else{return new ResponseEntity<List<HistoryTweetsTopic>>(HttpStatus.NOT_FOUND);}
+    }
+    
+    @RequestMapping(value = "/{id}/approvalTopic",method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<List<ApprovalTopic>> getApprovalTopic(@PathVariable("id") Integer id){
+        if(topicRepository.exists(id)){
+            List<ApprovalTopic> approvals = topicRepository.findOne(id).getApprovalTopicList();
+            return new ResponseEntity<List<ApprovalTopic>>(approvals, HttpStatus.OK);
+        }else{return new ResponseEntity<List<ApprovalTopic>>(HttpStatus.NOT_FOUND);}
+    }
+    
+    @RequestMapping(value = "/{id}/happrovalTopic",method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<List<HistoryApprovalTopic>> getHistoryApprovalTopic(@PathVariable("id") Integer id){
+        if(topicRepository.exists(id)){
+            List<HistoryApprovalTopic> happrovals = topicRepository.findOne(id).getHistoryApprovalTopicList();
+            return new ResponseEntity<List<HistoryApprovalTopic>>(happrovals, HttpStatus.OK);
+        }else{return new ResponseEntity<List<HistoryApprovalTopic>>(HttpStatus.NOT_FOUND);}
+    }
 }
